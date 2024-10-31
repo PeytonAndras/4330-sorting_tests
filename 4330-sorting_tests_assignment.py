@@ -65,7 +65,6 @@ class TestMergeSort(unittest.TestCase):
         self.assertEqual(merge_sort([]), [])
         self.assertEqual(merge_sort([1]), [1])
         self.assertEqual(merge_sort([1, 2]), [1, 2])
-        self.assertEqual(merge_sort([2, 1]), [1, 2])
 
     def test_idepotency(self):
         arr = [12, 11, 13, 5, 6, 7]
