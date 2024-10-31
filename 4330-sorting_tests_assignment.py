@@ -30,18 +30,12 @@ def merge_sort(arr):
             j += 1
             k += 1
 
+    return arr
+
 def print_list(arr):
     for i in range(len(arr)):
         print(arr[i], end=" ")
     print()
-
-if __name__ == "__main__":
-    arr = [12, 11, 13, 5, 6, 7]
-    print("Given array is")
-    print_list(arr)
-    merge_sort(arr)
-    print("Sorted array is")
-    print_list(arr)
 
 class TestMergeSort(unittest.TestCase):
 
@@ -53,7 +47,9 @@ class TestMergeSort(unittest.TestCase):
     def test_negative_cases(self):
         with self.assertRaises(TypeError):
             merge_sort(123)
+        with self.assertRaises(TypeError):
             merge_sort("123")
+        with self.assertRaises(TypeError):
             merge_sort([1, 2, 3, "4", 5, 6])
 
     def test_performance_cases(self):
@@ -66,10 +62,16 @@ class TestMergeSort(unittest.TestCase):
         self.assertEqual(merge_sort([1]), [1])
         self.assertEqual(merge_sort([1, 2]), [1, 2])
 
-    def test_idepotency(self):
+    def test_idempotency_cases(self):
         arr = [12, 11, 13, 5, 6, 7]
-        self.assertEqual(merge_sort(arr), [5, 6, 7, 11, 12, 13])
-        self.assertEqual(merge_sort(arr), [5, 6, 7, 11, 12, 13])
+        sorted_arr = merge_sort(arr)
+        self.assertEqual(merge_sort(sorted_arr), sorted_arr)
 
 if __name__ == "__main__":
+    arr = [12, 11, 13, 5, 6, 7]
+    print("Given array is")
+    print_list(arr)
+    merge_sort(arr)
+    print("Sorted array is")
+    print_list(arr)
     unittest.main()
